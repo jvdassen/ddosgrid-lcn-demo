@@ -7,7 +7,7 @@ services:
     volumes:
       - userdata:/usr/src/app/api/data/
     command:
-      - /usr/src/app/api/scripts/start_dev_server.sh
+      - /usr/src/app/api/scripts/start_demo.sh
   ddosgridfrontend:
     ports:
       - "8081:8081"
