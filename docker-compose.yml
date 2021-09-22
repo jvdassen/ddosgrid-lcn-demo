@@ -10,7 +10,8 @@ services:
       - /usr/src/app/api/scripts/start_dev_server.sh
   ddosgridfrontend:
     ports:
-      - "8081:80"
+      - "8081:8081"
     build: "./frontend"
+    command: npm run serve
 volumes:
   userdata:
