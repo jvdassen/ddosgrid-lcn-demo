@@ -12,29 +12,16 @@ services:
 #        -----END RSA PRIVATE KEY-----
   ddosgridapi:
     ports:
-      - "3000:3000"
+      - "8080:8080"
 #    image: "ddosgrid/ddosgrid-api"
     build: "."
     volumes:
       - userdata:/usr/src/app/api/data/
-    environment:
-      - PORT=3000
-      - CLIENT_APP_ORIGIN=https://www.csg.uzh.ch/ddosgrid/
-      # Make sure that the following two URLs end with a slash !
-      - OAUTH2_AUTHORIZE=https://www.csg.uzh.ch/ddosgrid/ddosdb/o/authorize/
-      - OAUTH2_TOKEN=https://www.csg.uzh.ch/ddosgrid/ddosdb/o/token/
-      - OAUTH2_SUCCESS_FORWARD=https://www.csg.uz.ch/ddosgrid
-      - OAUTH2_CLIENTID=3Wpm2RleLRAvEcLsALspuowD5CSJvefc9x5R7vcA
-      - OAUTH2_CLIENTSECRET=OqgbEEzNy86435yBpwO0yvDRlArTt3LfTkciMkOvdxRMMAEt2perGIklGjbAsNpwhFJZFw4RjAJ5BqZjdfFTV6QwXeebGhuW7t9h9QRi8A0hKCCeYWTnKuauMXPRUFEZ
-      - OAUTH2_CALLBACK=https://www.csg.uzh.ch/ddosgrid/api/auth/provider/callback/
-      - DDOSDB_PROFILEINFO=https://www.csg.uzh.ch/ddosgrid/ddosdb/api/profileinfo
-      - DDOSDB_PCAPEXPORT=https://www.csg.uzh.ch/ddosgrid/ddosdb/
-      - DDOSDB_FILTEREXPORT=https://www.csg.uzh.ch/ddosgrid/ddosdb/api/upload-filter_rules
-      - DDOSDB_HOST=www.csg.uzh.ch
-      - DDOSDB_ATTACKTRACE_PATH=/ddosgrid/ddosdb/api/attack-trace
+    command:
+      - /usr/src/app/api/scripts/start_dev_server.sh
   ddosgridfrontend:
     ports:
-      - "3001:80"
+      - "8081:80"
     build: "./frontend"
 volumes:
   userdata:
