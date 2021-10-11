@@ -1,6 +1,7 @@
 version: '3'
 services:
   ddosgridapi:
+    restart: always
     ports:
       - "8080:8080"
     build: "."
@@ -9,6 +10,7 @@ services:
     command:
       - /usr/src/app/api/scripts/start_demo.sh
   ddosgridfrontend:
+    restart: always
     ports:
       - "8081:8081"
     build: "./frontend"
